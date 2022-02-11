@@ -1,0 +1,104 @@
+.eye {
+  width: 250px;
+  height: 80px;
+  margin: 50px;
+  display:inline-block;
+  perspective: 200px;
+  background:
+    radial-gradient(circle 100px at 50% 250%,#f1c27d 99% ,transparent 100%) top/100% 50%,
+    radial-gradient(circle 100px at 50% -150%,#f1c27d 99% ,transparent 100%) bottom/100% 50%;
+  background-repeat:no-repeat;
+  transform-style:preserve-3d;
+  position:relative;
+}
+
+.eye>div {
+  height: 50%;
+  position:relative;
+  overflow:hidden;
+  transform-origin:bottom;
+  z-index:1;
+  animation:b1 0.8s  infinite ease-out alternate;
+}
+.eye>div:last-child {
+  transform-origin:top;
+  animation:none;
+}
+.eye>div:before {
+  content: "";
+  position: absolute;
+  top:0;
+  left:10%;
+  right:10%;
+  padding-top:80%;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:
+    -2px 0 0 3px inset #f1c27d,
+    inset -5px 5px 2px 4px black;
+  animation:inherit;
+  animation-name:color;
+}
+.eye>div:last-child:before {
+  bottom:0;
+  top:auto;
+  box-shadow:
+    -2px 0 0 3px inset #f1c27d,
+    inset -6px -4px 2px 4px black;
+}
+.eye > span {
+  position:absolute;
+  width:45px;
+  height:45px;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%) translateZ(55px);
+  overflow:hidden;
+  border-radius:20% 20% 0 0;
+  z-index:2;
+  animation:b2 0.8s  infinite ease-out alternate;
+}
+.eye > span:before {
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:45px;
+  width:100%;
+  content:attr(data-text);
+  border-radius:50%;
+  background:#000;
+  color:#fff;
+  text-align:center;
+  line-height:45px;
+}
+
+
+body {
+ background:#000;
+}
+
+@keyframes b1{
+  to { 
+    transform:rotateX(-170deg);
+  }
+}
+@keyframes b2{
+  50% {
+    height:20px;
+  }
+  60%,100% {
+    height:0px;
+  }
+}
+@keyframes color{
+  0%,40% {
+    background:#fff;
+    box-shadow:
+      -2px 0 0 3px inset #f1c27d,
+      inset -5px 5px 2px 4px black;
+  }
+  40.1%,100% { 
+    background:#f1c27d;
+    box-shadow:none;
+  }
+}
